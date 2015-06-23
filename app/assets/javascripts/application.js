@@ -20,8 +20,15 @@ $(document).on('ready page:load', function(){
 	current_page = $("MAIN").data('current-page');
 	console.log("Current page is: ", current_page)
 
-	//Handle the click of the more button
-	$("#more-button").click(function(){
+	//Keep track of if we're loading a page
+	loading = false
+
+	//Loads the next page when called
+	function load_next_page(){
+
+		if(loading) return;
+
+		loading = true;
 
 		//Increment the page number to be requested
 		current_page++
@@ -46,11 +53,35 @@ $(document).on('ready page:load', function(){
 				$("#more-button").show()
 				$("#loading-text").addClass("hidden")
 
+				loading = false;
+
 			}
 		})
 
 		//Prevent the default action
 		return false;
+
+	}
+
+	//Bind it to the button
+	$("#more-button").click(load_next_page)
+
+	//Perform autopaging on scroll
+	$(window).scroll(function(){
+
+		var window_top = $(window).scrollTop();
+		var window_height = $(window).height();
+		var document_height = $(document).height();
+
+		//console.log(window_top, window_height, document_height)
+
+		// Load a new page at 400% of window height
+		var load_at = window_height * 4.00
+
+		if(document_height - window_height - window_top < load_at){
+			load_next_page()
+		}
+
 
 	})
 
