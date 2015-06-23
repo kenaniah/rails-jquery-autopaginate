@@ -1,54 +1,73 @@
-<h2>User Data</h2>
+<aside>
 
-<table>
-       <tr>
-               <td>Auth Provider: </td>
-               <td><%= @auth["provider"] %></td>
-       </tr>
-       <tr>
-               <td>Unique ID: </td>
-               <td><%= @auth["uid"] %></td>
-       </tr>
-       <tr>
-               <td>Email: </td>
-               <td><%= @auth["info"]["email"] %></td>
-       </tr>
-       <tr>
-               <td>Username: </td>
-               <td><%= @auth["info"]["nickname"] %></td>
-       </tr>
-       <tr>
-               <td>Name: </td>
-               <td><%= @auth["info"]["name"] %></td>
-       </tr>
-       <tr>
-               <td>Mugshot: </td>
-               <td><img src="<%= @auth["info"]["image"] %>" width="50" /></td>
-       </tr>
-</table>
+    <h2>User Data</h2>
 
-<h2>Facebook Feed</h2>
+    <table>
+           <tr>
+                   <td>Auth Provider: </td>
+                   <td><%= @auth["provider"] %></td>
+           </tr>
+           <tr>
+                   <td>Unique ID: </td>
+                   <td><%= @auth["uid"] %></td>
+           </tr>
+           <tr>
+                   <td>Email: </td>
+                   <td><%= @auth["info"]["email"] %></td>
+           </tr>
+           <tr>
+                   <td>Username: </td>
+                   <td><%= @auth["info"]["nickname"] %></td>
+           </tr>
+           <tr>
+                   <td>Name: </td>
+                   <td><%= @auth["info"]["name"] %></td>
+           </tr>
+           <tr>
+                   <td>Mugshot: </td>
+                   <td><img src="<%= @auth["info"]["image"] %>" width="50" /></td>
+           </tr>
+    </table>
+</aside>
 
 <main>
+
+    <h2>Facebook Feed</h2>
 
     <% @graph.get_object("me/feed").each do |entry| %>
     <article>
         <header>
-            <%= entry['from']['name'] %>
+            <a href='#'><b><%= entry['from']['name'] %></b></a>
         </header>
-        <div>
-            <%= entry['story'] %>
-            <%= image_tag entry['picture'] if entry['picture'] %>
-        </div>
-        <footer>
-            <% entry['comments']['data'].each do |comment| %>
-            <article>
-                <%= comment['from']['name'] %>: <%= comment['message'] %>
-            </article>
-            <% end if entry['comments'] %>
-        </footer>
+        <div class="story">
 
-        <pre><%= entry.inspect %></pre>
+            <%= entry['story'] || entry['message'] %>
+
+            <% if entry['picture'] %>
+            <div class="photo">
+                <%= image_tag entry['picture'] %>
+            </div>
+            <% end %>
+
+            <div class="like-comment">
+                <a href='#'>Like</a> &bull; <a href='#'>Comment</a>
+            </div>
+
+        </div>
+        <% if entry['comments'] %>
+        <footer>
+            <ul>
+            <% entry['comments']['data'].each do |comment| %>
+                <li>
+                    <a href="#"><b><%= comment['from']['name'] %></b></a>
+                    <%= comment['message'] %>
+                    <br>
+                    <small><a href='#'>Like</a> &bull; <a href='#'>Reply</a></small>
+                </li>
+            <% end %>
+            </ul>
+        </footer>
+        <% end %>
 
     </article>
     <% end %>

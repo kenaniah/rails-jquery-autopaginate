@@ -13,3 +13,67 @@
  *= require_tree .
  *= require_self
  */
+
+BODY {
+    color: rgb(20, 24, 35);
+    background-color: rgb(233, 234, 237);
+}
+
+BODY > ASIDE {
+    position: fixed;
+    top: 36px;
+    left: 0;
+    padding: 12px;
+}
+
+MAIN H2 {
+    text-align: center;
+}
+
+ARTICLE {
+    display: block;
+    background-color: white;
+    margin: 0 auto 12px;
+    width: 486px;
+}
+
+ARTICLE > HEADER {
+    padding: 6px 12px;
+}
+
+ARTICLE .story {
+    padding: 0 12px 6px;
+}
+
+ARTICLE .photo {
+    margin-top: 6px;
+    text-align: center;
+}
+
+ARTICLE .photo IMG {
+    width: 100%;
+    max-height: 255px;
+}
+
+ARTICLE .like-comment {
+    margin-top: 6px;
+    font-size: 0.9em;
+}
+
+ARTICLE > FOOTER {
+    font-size: 0.9em;
+    background-color: rgb(246, 247, 248);
+    border-top: 1px solid rgb(225, 226, 227);
+    padding: 6px 12px;
+}
+
+ARTICLE > FOOTER > UL {
+    margin: 0;
+    padding: 0;
+}
+
+ARTICLE > FOOTER > UL > LI {
+    margin: 0;
+    padding: 3px 0;
+    list-style: none;
+}
