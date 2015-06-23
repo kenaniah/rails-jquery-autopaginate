@@ -10,7 +10,12 @@ class SessionController < ApplicationController
       @auth = session['auth']
       @graph = Koala::Facebook::API.new @auth['credentials']['token']
 
-      @stories = @graph.get_object("me/feed?limit=3")
+      # Configure from params
+      limit = 3
+      @page = Integer(params[:page]) rescue 1
+      offset = (@page - 1) * limit
+
+      @stories = @graph.get_object("me/feed?limit=#{limit}&offset=#{offset}")
 
       # render :_feed, layout: false
 
