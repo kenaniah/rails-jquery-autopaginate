@@ -17,6 +17,7 @@
 BODY {
     color: rgb(20, 24, 35);
     background-color: rgb(233, 234, 237);
+    padding-bottom: 12px;
 }
 
 BODY > ASIDE {
