@@ -17,7 +17,10 @@ class SessionController < ApplicationController
 
       @stories = @graph.get_object("me/feed?limit=#{limit}&offset=#{offset}")
 
-      # render :_feed, layout: false
+      # Render just the partial if it's an AJAX request
+      if request.xhr?
+          render :_feed, layout: false
+      end
 
   end
 
