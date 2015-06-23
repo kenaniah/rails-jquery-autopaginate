@@ -30,16 +30,16 @@
     </table>
 </aside>
 
-<main>
+<main data-current-page="<%= @page %>">
 
     <h2>Facebook Feed</h2>
 
     <%= render 'feed' %>
 
-    <div class="text-center hidden">
+    <div id="loading-text" class="text-center hidden">
         Loading...
     </div>
-    <div class="text-center">
+    <div id="more-button" class="text-center">
         <button class="btn btn-primary">Load More Posts</button>
     </div>
 

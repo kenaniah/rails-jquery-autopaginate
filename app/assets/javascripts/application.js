@@ -10,7 +10,22 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery
+//= require jquery2
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+$(document).on('ready page:load', function(){
+
+	//Keep track of the current page number
+	page = $("MAIN").data('current-page');
+	console.log("Current page is: " + page)
+
+	//Handle the click of the more button
+	$("#more-button").click(function(){
+
+		$(this).hide()
+		$("#loading-text").removeClass("hidden")
+
+	})
+
+})
