@@ -39,7 +39,14 @@ ARTICLE {
 }
 
 ARTICLE > HEADER {
+    padding: 6px 0;
+}
+
+ARTICLE > HEADER IMG {
     padding: 6px 12px;
+    width: 40px;
+    height: 40px;
+    box-sizing: content-box;
 }
 
 ARTICLE .story {

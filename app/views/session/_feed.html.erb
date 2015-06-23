@@ -1,7 +1,18 @@
 <% @stories.each do |entry| %>
 <article>
 	<header>
-		<a href='#'><b><%= entry['from']['name'] %></b></a>
+		<table>
+			<tr>
+				<td>
+					<img src="//graph.facebook.com/<%= entry['from']['id'] %>/picture">
+				</td>
+				<td>
+					<a href='#'><b><%= entry['from']['name'] %></b></a>
+					<br>
+					<time datetime="<%= entry['created_time'] %>"><%= entry['created_time'] %></time>
+				</td>
+			</tr>
+		</table>
 	</header>
 	<div class="story">
 

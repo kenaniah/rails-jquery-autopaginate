@@ -14,11 +14,19 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+function update_timestamps(){
+	$("TIME").timeago();
+}
+
 $(document).on('ready page:load', function(){
 
 	//Keep track of the current page number
 	current_page = $("MAIN").data('current-page');
 	console.log("Current page is: ", current_page)
+
+	//Update the timestamps with the timeago plugin
+	update_timestamps();
 
 	//Keep track of if we're loading a page
 	loading = false
@@ -48,6 +56,9 @@ $(document).on('ready page:load', function(){
 
 				//Display the new stories
 				$(".stories").append(response);
+
+				//Update timestamps
+				update_timestamps();
 
 				//Remove the loading state from the UI
 				$("#more-button").show()
