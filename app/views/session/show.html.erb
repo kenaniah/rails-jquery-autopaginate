@@ -27,6 +27,32 @@
        </tr>
 </table>
 
+<h2>Facebook Feed</h2>
+
+<main>
+
+    <% @graph.get_object("me/feed").each do |entry| %>
+    <article>
+        <header>
+            <%= entry['from']['name'] %>
+        </header>
+        <div>
+            <%= entry['story'] %>
+            <%= image_tag entry['picture'] if entry['picture'] %>
+        </div>
+        <footer>
+            <% entry['comments']['data'].each do |comment| %>
+            <article>
+                <%= comment['from']['name'] %>: <%= comment['message'] %>
+            </article>
+            <% end if entry['comments'] %>
+        </footer>
+
+        <pre><%= entry.inspect %></pre>
+
+    </article>
+    <% end %>
+
 <h2>Auth Contains</h2>
 <code>
        <%= @auth.inspect %>

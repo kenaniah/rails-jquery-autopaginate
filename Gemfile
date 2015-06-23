@@ -27,6 +27,9 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'figaro'
 
+# Facebook Graph API gem
+gem 'koala'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

@@ -6,6 +6,7 @@ class SessionController < ApplicationController
   def show
       redirect_to root_path unless session['auth']
       @auth = session['auth']
+      @graph = Koala::Facebook::API.new @auth['credentials']['token']
   end
 
   def create
